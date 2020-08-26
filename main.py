@@ -1,6 +1,9 @@
 import cv2
 from image_preprocessing import Preprocessing
-import pytesseract
+import numpy as np
+from model import get_model
+from keras.preprocessing.image import ImageDataGenerator
+import itertools
 
 
 def show_img(image):
@@ -11,6 +14,14 @@ def show_img(image):
 
 
 preprocessing = Preprocessing('./Backgrounds')
-for i in range(1, 11):
-    img = preprocessing.prepare(f'./Data/{i}.png')
-    show_img(img)
+images = preprocessing.load_and_prepare_data(f'./Data')
+for i in images:
+    show_img(i)
+
+
+#img = np.array([img])
+#print(img.shape)
+
+#model = get_model()
+#model.summary()
+#print(model.predict(img))
